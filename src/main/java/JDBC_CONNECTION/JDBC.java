@@ -1,17 +1,26 @@
+package JDBC_CONNECTION;
+
 import java.sql.*;
 
-public class JDBC {
-    private static final String URL = "jdbc:mysql://localhost:3306/test_schema";
-    private static final String USERNAME = "root";
-    private static final String PASS = "root123";
-    private static final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
+public class JDBC implements interfaces.Connection {
+    private String URL;
+    private String USERNAME;
+    private String PASS;
+    private String JDBC_Driver;
 
+    public JDBC(String URL, String USERNAME, String PASS, String JDBC_Driver){
+        this.URL = URL;
+        this.USERNAME =USERNAME;
+        this.PASS = PASS;
+        this.JDBC_Driver = JDBC_Driver;
+    }
 
-    public static void main(String[] args) {
+    public void connect(){
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         String SQL = "SELECT * FROM new_table WHERE new_table.name LIKE 'D%'";
+
         try {
             System.out.println("Registering JDBC driver...");
             Class.forName(JDBC_Driver);
@@ -25,7 +34,8 @@ public class JDBC {
 
             System.out.println("Retrieving data from database...");
             while (resultSet.next()){
-                System.out.println(resultSet.getString(1));
+                System.out.println(resultSet.getString(2));
+
             }
 
             System.out.println("Closing connection and releasing resources...");
@@ -33,7 +43,8 @@ public class JDBC {
             statement.close();
             connection.close();
 
-        }catch (SQLException e){
+        }catch (
+                SQLException e){
             e.printStackTrace();
         }catch (ClassNotFoundException e){
             e.printStackTrace();
