@@ -1,17 +1,13 @@
 package JDBC_CONNECTION;
 
 import java.sql.*;
+import ENTITY.Host;
 
-public class JDBC implements interfaces.Connection {
-    private String URL;
-    private String USERNAME;
-    private String PASS;
+public class JDBC extends Host {
     private String JDBC_Driver;
 
     public JDBC(String URL, String USERNAME, String PASS, String JDBC_Driver){
-        this.URL = URL;
-        this.USERNAME =USERNAME;
-        this.PASS = PASS;
+        super(URL, USERNAME, PASS);
         this.JDBC_Driver = JDBC_Driver;
     }
 
@@ -26,7 +22,7 @@ public class JDBC implements interfaces.Connection {
             Class.forName(JDBC_Driver);
 
             System.out.println("Creating database connection...");
-            connection = DriverManager.getConnection(URL, USERNAME, PASS);
+            connection = DriverManager.getConnection(getURL(), getUSERNAME(), getPASS());
 
             System.out.println("Executing statement...");
             statement = connection.createStatement();
