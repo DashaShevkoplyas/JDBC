@@ -2,7 +2,7 @@ package jdbc.connection;
 
 import java.sql.*;
 
-import entity.Host;
+import entities.Host;
 
 public class Jdbc extends Host {
     private String jdbcDriver;
