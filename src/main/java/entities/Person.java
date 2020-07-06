@@ -5,11 +5,10 @@ public class Person {
     public String name;
     public int age;
 
-    Person() {
+    public Person() {
     }
 
-    Person(int id, String name, int age) {
-        this.id = id;
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -36,5 +35,8 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+    public String toSting(){
+        return "Name:"+name+", Age:"+age;
     }
 }

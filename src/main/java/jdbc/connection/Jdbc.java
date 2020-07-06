@@ -1,8 +1,11 @@
 package jdbc.connection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import entities.Host;
+
 
 public class Jdbc extends Host {
     private String jdbcDriver;
@@ -16,7 +19,7 @@ public class Jdbc extends Host {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        String SQL = "SELECT * FROM new_table WHERE new_table.name LIKE 'D%'";
+        String SQL = "SELECT * FROM new_table";
 
         try {
             System.out.println("Registering JDBC driver...");
@@ -31,9 +34,12 @@ public class Jdbc extends Host {
 
             System.out.println("Retrieving data from database...");
             while (resultSet.next()) {
-                System.out.println(resultSet.getString(2));
-
+                ArrayList<String> people = new ArrayList<String>
+                        (Arrays.asList(resultSet.getString(1),
+                                resultSet.getString(2), resultSet.getString(3)));
+                people.forEach(info -> System.out.println(info));
             }
+
 
             System.out.println("Closing connection and releasing resources...");
             resultSet.close();
