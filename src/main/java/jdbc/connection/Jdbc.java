@@ -3,6 +3,7 @@ package jdbc.connection;
 import java.sql.*;
 
 import entities.Host;
+import entities.Person;
 import implementation.InfoImpl;
 import implementation.QueriesImpl;
 
@@ -28,12 +29,16 @@ public class Jdbc extends Host {
             System.out.println("Creating database connection...");
             connection = DriverManager.getConnection(getUrl(), getUsername(), getPass());
 
-            System.out.println("Executing statement...");
+            System.out.println("Create statement...");
             statement = connection.createStatement();
+            String update = new QueriesImpl().update();
+            System.out.println("Update statement...");
+            statement.executeUpdate(update);
+            System.out.println("Execute statement...");
             resultSet = statement.executeQuery(SQL);
 
             System.out.println("Retrieving data from database...");
-            System.out.println(new InfoImpl().getAllPeople(resultSet));
+            new InfoImpl().getAllPeople(resultSet);
 //            while (resultSet.next()) {
 //                ArrayList<String> people = new ArrayList<String>
 //                        (Arrays.asList(resultSet.getString(1),

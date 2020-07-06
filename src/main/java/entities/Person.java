@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Person {
     public int id;
     public String name;
@@ -7,7 +9,10 @@ public class Person {
 
     public Person() {
     }
-
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
     public Person(int id, String name, int age) {
         this.id = id;
         this.name = name;

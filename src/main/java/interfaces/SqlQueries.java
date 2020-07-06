@@ -9,7 +9,7 @@ public interface SqlQueries {
 
     String insert(Person person);
 
-    String update(Person person, int id);
+    String update();
 
     String delete(int id);
 }

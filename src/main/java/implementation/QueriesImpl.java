@@ -16,12 +16,12 @@ public class QueriesImpl implements SqlQueries {
 
     @Override
     public String insert(Person person) {
-        return "INSERT INTO new_table (name, age) VALUES (person.getName(), person.getAge())";
+        return "INSERT INTO new_table (name, age) VALUES (person.name, person.age)";
     }
 
     @Override
-    public String update(Person person, int id) {
-        return "UPDATE new_table SET name = person.setName('ANNY'), age = person.setAge(23) WHERE `id` = id";
+    public String update() {
+        return "UPDATE new_table SET age = 30 WHERE id = 1";
     }
 
     @Override

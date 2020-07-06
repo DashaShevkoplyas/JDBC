@@ -21,6 +21,7 @@ public class InfoImpl implements Information {
                     resultSet.getInt("age"));
             personArrayList.add(person);
         }
+        personArrayList.forEach(info -> System.out.println(info.toSting()));
         return personArrayList;
     }
 }
