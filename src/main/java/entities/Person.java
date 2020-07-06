@@ -8,7 +8,8 @@ public class Person {
     public Person() {
     }
 
-    public Person(String name, int age) {
+    public Person(int id, String name, int age) {
+        this.id = id;
         this.name = name;
         this.age = age;
     }
@@ -36,7 +37,8 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
-    public String toSting(){
-        return "Name:"+name+", Age:"+age;
+
+    public String toSting() {
+        return "Name:" + name + ", Age:" + age;
     }
 }
