@@ -1,0 +1,6 @@
+###Ignore all target files
+target/
+
+###IntelijIdea
+.idea
+*.iml

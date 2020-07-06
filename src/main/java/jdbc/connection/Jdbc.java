@@ -1,21 +1,21 @@
-package JDBC_CONNECTION;
+package jdbc.connection;
 
 import java.sql.*;
 
-public class JDBC implements interfaces.Connection {
-    private String URL;
-    private String USERNAME;
-    private String PASS;
-    private String JDBC_Driver;
+public class Jdbc implements interfaces.Connection {
+    private String url;
+    private String username;
+    private String pass;
+    private String jdbcDriver;
 
-    public JDBC(String URL, String USERNAME, String PASS, String JDBC_Driver){
-        this.URL = URL;
-        this.USERNAME =USERNAME;
-        this.PASS = PASS;
-        this.JDBC_Driver = JDBC_Driver;
+    public Jdbc(String url, String username, String pass, String jdbcDriver) {
+        this.url = url;
+        this.username = username;
+        this.pass = pass;
+        this.jdbcDriver = jdbcDriver;
     }
 
-    public void connect(){
+    public void connect() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -23,19 +23,18 @@ public class JDBC implements interfaces.Connection {
 
         try {
             System.out.println("Registering JDBC driver...");
-            Class.forName(JDBC_Driver);
+            Class.forName(jdbcDriver);
 
             System.out.println("Creating database connection...");
-            connection = DriverManager.getConnection(URL, USERNAME, PASS);
+            connection = DriverManager.getConnection(url, username, pass);
 
             System.out.println("Executing statement...");
             statement = connection.createStatement();
             resultSet = statement.executeQuery(SQL);
 
             System.out.println("Retrieving data from database...");
-            while (resultSet.next()){
-                System.out.println(resultSet.getString(2));
-
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(3));
             }
 
             System.out.println("Closing connection and releasing resources...");
@@ -43,10 +42,9 @@ public class JDBC implements interfaces.Connection {
             statement.close();
             connection.close();
 
-        }catch (
-                SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
