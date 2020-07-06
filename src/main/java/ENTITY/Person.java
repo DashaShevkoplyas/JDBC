@@ -1,13 +1,14 @@
-package ENTITY;
+package entity;
 
 public class Person {
     public int id;
     public String name;
     public int age;
 
-    Person(){
+    Person() {
     }
-    Person(int id,String name, int age){
+
+    Person(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;

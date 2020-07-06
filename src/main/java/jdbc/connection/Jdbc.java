@@ -1,17 +1,18 @@
-package JDBC_CONNECTION;
+package jdbc.connection;
 
 import java.sql.*;
-import ENTITY.Host;
 
-public class JDBC extends Host {
-    private String JDBC_Driver;
+import entity.Host;
 
-    public JDBC(String URL, String USERNAME, String PASS, String JDBC_Driver){
-        super(URL, USERNAME, PASS);
-        this.JDBC_Driver = JDBC_Driver;
+public class Jdbc extends Host {
+    private String jdbcDriver;
+
+    public Jdbc(String url, String username, String pass, String jdbcDriver) {
+        super(url, username, pass);
+        this.jdbcDriver = jdbcDriver;
     }
 
-    public void connect(){
+    public void connect() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -19,17 +20,17 @@ public class JDBC extends Host {
 
         try {
             System.out.println("Registering JDBC driver...");
-            Class.forName(JDBC_Driver);
+            Class.forName(jdbcDriver);
 
             System.out.println("Creating database connection...");
-            connection = DriverManager.getConnection(getURL(), getUSERNAME(), getPASS());
+            connection = DriverManager.getConnection(getUrl(), getUsername(), getPass());
 
             System.out.println("Executing statement...");
             statement = connection.createStatement();
             resultSet = statement.executeQuery(SQL);
 
             System.out.println("Retrieving data from database...");
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 System.out.println(resultSet.getString(2));
 
             }
@@ -39,10 +40,10 @@ public class JDBC extends Host {
             statement.close();
             connection.close();
 
-        }catch (
-                SQLException e){
+        } catch (
+                SQLException e) {
             e.printStackTrace();
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

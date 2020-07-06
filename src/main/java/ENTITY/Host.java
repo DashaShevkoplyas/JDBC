@@ -1,40 +1,46 @@
-package ENTITY;
+package entity;
 
 import interfaces.Connection;
 
 public class Host implements Connection {
-    private String URL;
-    private String USERNAME;
-    private String PASS;
+    private String url;
+    private String username;
+    private String pass;
 
-    public Host(String URL, String USERNAME, String PASS){
-        this.URL = URL;
-        this.USERNAME =USERNAME;
-        this.PASS = PASS;
+    public Host(String url, String username, String pass) {
+        this.url = url;
+        this.username = username;
+        this.pass = pass;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setUrl(String url) {
+
+        this.url = url;
     }
 
-    public void setUSERNAME(String USERNAME) {
-        this.USERNAME = USERNAME;
+    public void setUsername(String username) {
+
+        this.username = username;
     }
 
-    public void setPASS(String PASS) {
-        this.PASS = PASS;
+    public void setPass(String pass) {
+
+        this.pass = pass;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+
+        return url;
     }
 
-    public String getUSERNAME() {
-        return USERNAME;
+    public String getUsername() {
+
+        return username;
     }
 
-    public String getPASS() {
-        return PASS;
+    public String getPass() {
+
+        return pass;
     }
 
     @Override
