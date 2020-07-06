@@ -1,31 +1,38 @@
+package jdbc.connection;
+
 import java.sql.*;
 
-public class JDBC {
-    private static final String URL = "jdbc:mysql://localhost:3306/test_schema";
-    private static final String USERNAME = "root";
-    private static final String PASS = "root123";
-    private static final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
+import entities.Host;
 
+public class Jdbc extends Host {
+    private String jdbcDriver;
 
-    public static void main(String[] args) {
+    public Jdbc(String url, String username, String pass, String jdbcDriver) {
+        super(url, username, pass);
+        this.jdbcDriver = jdbcDriver;
+    }
+
+    public void connect() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         String SQL = "SELECT * FROM new_table WHERE new_table.name LIKE 'D%'";
+
         try {
             System.out.println("Registering JDBC driver...");
-            Class.forName(JDBC_Driver);
+            Class.forName(jdbcDriver);
 
             System.out.println("Creating database connection...");
-            connection = DriverManager.getConnection(URL, USERNAME, PASS);
+            connection = DriverManager.getConnection(getUrl(), getUsername(), getPass());
 
             System.out.println("Executing statement...");
             statement = connection.createStatement();
             resultSet = statement.executeQuery(SQL);
 
             System.out.println("Retrieving data from database...");
-            while (resultSet.next()){
-                System.out.println(resultSet.getString(1));
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(3));
+
             }
 
             System.out.println("Closing connection and releasing resources...");
@@ -33,9 +40,10 @@ public class JDBC {
             statement.close();
             connection.close();
 
-        }catch (SQLException e){
+        } catch (
+                SQLException e) {
             e.printStackTrace();
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
