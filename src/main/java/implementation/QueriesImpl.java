@@ -2,8 +2,7 @@ package implementation;
 
 import entities.Person;
 import interfaces.SqlQueries;
-//TODO figure out how to parse values into queries
-// in the way like getName() or about
+
 public class QueriesImpl implements SqlQueries {
     @Override
     public String selectAll() {
@@ -11,22 +10,22 @@ public class QueriesImpl implements SqlQueries {
     }
 
     @Override
-    public String selectCondition() {
-        return "SELECT t FROM new_table t WHERE t.id = ?";
+    public String selectCondition(int user_id) {
+        return "SELECT * FROM new_table WHERE id = '" + user_id + "'";
     }
 
     @Override
     public String insert(Person person) {
-        return "INSERT INTO new_table (name, age) VALUES (person.name, person.age)";
+        return "INSERT INTO new_table (name, age) VALUES ('" + person.getName() + "','" + person.getAge() + "')";
     }
 
     @Override
-    public String update() {
-        return "UPDATE new_table SET age = 30 WHERE id = 1";
+    public String update(Person person) {
+        return "UPDATE new_table SET name = '" + person.getName() + "',age = '" + person.getAge() + "' WHERE id = '" + person.getId() + "'";
     }
 
     @Override
     public String delete(int id) {
-        return "DELETE FROM new_table WHERE `id` = id";
+        return "DELETE FROM new_table WHERE id = '" + id + "'";
     }
 }

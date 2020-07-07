@@ -7,9 +7,6 @@ import entities.Person;
 import implementation.InfoImpl;
 import implementation.QueriesImpl;
 
-import javax.management.Query;
-
-
 public class Jdbc extends Host {
     private String jdbcDriver;
 
@@ -31,23 +28,18 @@ public class Jdbc extends Host {
 
             System.out.println("Create statement...");
             statement = connection.createStatement();
-//            String update = new QueriesImpl().update();
-//            System.out.println("Update statement...");
-//            statement.executeUpdate(update);
-            System.out.println("Execute statement...");
 
+            System.out.println("Insert record...");
+            String insert = new QueriesImpl().insert(new Person("Jake", 15));
+            statement.executeUpdate(insert);
+
+            System.out.println("Execute statement...");
             String SQL = new QueriesImpl().selectAll();
             resultSet = statement.executeQuery(SQL);
 
             System.out.println("Retrieving data from database...");
             new InfoImpl().getAllPeople(resultSet);
-//            while (resultSet.next()) {
-//                ArrayList<String> people = new ArrayList<String>
-//                        (Arrays.asList(resultSet.getString(1),
-//                                resultSet.getString(2), resultSet.getString(3)));
-//                people.forEach(info -> System.out.println(info));
-//            }
-//
+
             System.out.println("Closing connection and releasing resources...");
             resultSet.close();
             statement.close();
