@@ -5,7 +5,7 @@ import entities.Person;
 public interface SqlQueries {
     String selectAll();
 
-    String selectCondition(int id);
+    String selectCondition();
 
     String insert(Person person);
 

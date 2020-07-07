@@ -11,8 +11,8 @@ public class QueriesImpl implements SqlQueries {
     }
 
     @Override
-    public String selectCondition(int id) {
-        return "SELECT * FROM new_table WHERE id = id";
+    public String selectCondition() {
+        return "SELECT t FROM new_table t WHERE t.id = ?";
     }
 
     @Override
